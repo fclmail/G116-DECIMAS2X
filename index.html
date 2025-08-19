@@ -468,7 +468,8 @@ SAND: { address: "0xbbba073c31bf03b8acf7c28ef0738decf3695683", decimals: 18 }
         const logDiv = document.getElementById("log");
         const sessionNumber = transactionHistory.length + 1;
         const time = txDetails.timestamp ? new Date(txDetails.timestamp).toLocaleTimeString() : new Date().toLocaleTimeString();
-        const profit = txDetails.actualProfit || '';
+const profit = tx.actualProfit !== undefined ? Number(tx.actualProfit).toFixed(2) : '';
+const displayRow = `${time} ${index + 1} ${tx.symbol || ''} BUY ${tx.buyDex || ''} SELL ${tx.sellDex || ''} NET PROFIT, ${profit} ${txLink}<br>`;
         const txLink = txDetails.txHash ? `<a href="https://polygonscan.com/tx/${txDetails.txHash}" target="_blank">${txDetails.txHash}</a>` : '';
         const displayRow = `${time} ${sessionNumber} ${txDetails.symbol || ''} BUY ${txDetails.buyDex || ''} SELL ${txDetails.sellDex || ''} NET PROFIT, ${profit} ${txLink}<br>`;
         logDiv.innerHTML = displayRow + logDiv.innerHTML;
